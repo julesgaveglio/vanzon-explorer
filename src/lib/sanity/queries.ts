@@ -213,7 +213,7 @@ export const getAllMediaAssetsQuery = groq`
 `;
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// 9. Hero image (par titre)
+// 9. Hero image (par titre) - BACKUP
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 export const getHeroImageQuery = groq`
   *[_type == "mediaAsset" && title == "van-sur-la-route-montagne-océan"][0] {
@@ -224,6 +224,26 @@ export const getHeroImageQuery = groq`
         metadata { dimensions, lqip }
       },
       alt
+    }
+  }
+`;
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 10. Hero carousel images (NOUVEAU)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+export const getHeroCarouselQuery = groq`
+  *[_type == "heroImages" && isActive == true][0] {
+    _id,
+    title,
+    isActive,
+    "images": images[] {
+      "url": image.asset->url,
+      "alt": image.alt,
+      "title": title,
+      "metadata": image.asset->metadata {
+        dimensions,
+        lqip
+      }
     }
   }
 `;

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import GlassCard from "@/components/ui/GlassCard";
 import FormationHero from "@/components/formation/FormationHero";
-import StatsBar from "@/components/formation/StatsBar";
 import FormateurCard from "@/components/formation/FormateurCard";
 import ProgrammeAccordion from "@/components/formation/ProgrammeAccordion";
 import MockupSection from "@/components/formation/MockupSection";
@@ -53,16 +52,16 @@ const promiseIconBg = {
 
 // ── Section 4 — Pour qui ──
 const forYou = [
-  "Tu rêves de liberté géographique et de revenus complémentaires",
+  "Tu rêves de plus de liberté et de revenus complémentaires",
   "Tu veux voyager plus souvent, autrement, à ton rythme",
   "Tu n'as aucune compétence en bricolage (on t'apprend tout)",
   "Tu veux aménager ton fourgon et/ou en faire un business",
-  "Tu veux une formation moderne avec de vrais outils, pas un vieux PDF",
+  "Tu veux une formation moderne avec de vrais outils",
 ];
 
 const notForYou = [
   "Tu cherches une formation magistrale théorique (c'est 100% pratique)",
-  "Tu n'es pas prêt à mettre les mains dans le cambouis (au moins un peu !)",
+  "Tu cherches à faire de l'argent rapidement et facilement",
 ];
 
 // ── Section 7 — Différenciateurs ──
@@ -136,9 +135,7 @@ export default function FormationPage() {
       {/* ━━━ SECTION 1 — Hero ━━━ */}
       <FormationHero />
 
-      {/* ━━━ SECTION 2 — Chiffres de preuves ━━━ */}
-      <StatsBar />
-
+      
       {/* ━━━ SECTION 3 — La promesse en détail ━━━ */}
       <section className="bg-[#F8FAFC] py-20">
         <div className="max-w-5xl mx-auto px-6">
@@ -173,7 +170,7 @@ export default function FormationPage() {
             {/* Texte */}
             <div>
               <h2 className="text-3xl font-bold text-slate-900">
-                Cette formation est faite pour toi si…
+                L'accompagnement est fait pour toi si…
               </h2>
 
               <ul className="space-y-3 mt-6">
@@ -192,7 +189,7 @@ export default function FormationPage() {
 
               <div className="mt-8 pt-6 border-t border-border-default">
                 <p className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">
-                  Et NON faite pour toi si :
+                  Et NON fait pour toi si :
                 </p>
                 <ul className="space-y-2">
                   {notForYou.map((item) => (
@@ -213,7 +210,7 @@ export default function FormationPage() {
             {/* Image / illustration */}
             <div className="flex justify-center">
               <Image
-                src="https://iili.io/qFW0c8v.png"
+                src="https://iili.io/q2Y3F4f.png?v=1"
                 alt="Aménagement intérieur de van - Van Business Academy"
                 width={800}
                 height={600}
@@ -238,13 +235,13 @@ export default function FormationPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <FormateurCard
               name="Jules"
               role="Président & Co-fondateur"
               badge="Marketing & Digital"
               badgeColor="blue"
-              description="À 22 ans, Jules a fait un tour du monde de 7 mois dans 14 pays avec son père, puis a construit son premier van de zéro — sans aucune connaissance préalable. Il a tout appris en autodidacte, sur le terrain. Aujourd'hui, son van Yoni tourne en location au Pays Basque et il transmet ce qu'il a appris, sans filtre."
+              description="Tour du monde à 22 ans, van construit en autodidacte. Aujourd'hui expert en location et transmet son expérience concrète du terrain."
               tags={["Tour du monde", "Van autodidacte", "Location active"]}
             />
             <FormateurCard
@@ -252,7 +249,7 @@ export default function FormationPage() {
               role="Directeur Général & Co-fondateur"
               badge="Mécanique & Travaux"
               badgeColor="amber"
-              description="Adopté à 14 ans depuis Madagascar, Elio s'est forgé une mentalité hors du commun. Mécanicien de formation, il a co-construit tous les vans Vanzon. C'est lui qui te montre les bons gestes, les bons produits, et comment éviter les erreurs qui coûtent cher."
+              description="Mécanicien pro, co-constructeur des vans Vanzon. T'enseigne les gestes techniques, les bons produits et comment éviter les erreurs coûteuses."
               tags={["Mécanicien pro", "Expert travaux", "Mindset d'acier"]}
               imageUrl="https://iili.io/qF7VM8X.png"
             />
@@ -274,7 +271,7 @@ export default function FormationPage() {
               Pourquoi Van Business Academy ?
             </h2>
             <p className="text-slate-500 mt-3 max-w-xl mx-auto">
-              Pas une formation de plus. Une méthode moderne créée par des
+              Pas un accompagnement de plus. Une méthode moderne créée par des
               jeunes qui vivent la vanlife.
             </p>
           </div>

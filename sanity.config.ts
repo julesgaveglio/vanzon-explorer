@@ -25,6 +25,11 @@ export default defineConfig({
               .child(
                 S.documentTypeList("mediaAsset").title("Médiathèque"),
               ),
+            S.listItem()
+              .title("🎨 Images Hero")
+              .child(
+                S.documentTypeList("heroImages").title("Images Hero"),
+              ),
             S.divider(),
             S.listItem()
               .title("🚐 Vans")

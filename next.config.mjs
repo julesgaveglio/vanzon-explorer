@@ -18,9 +18,13 @@ const nextConfig = {
     ],
     unoptimized: true,
   },
-  output: 'export',
-  trailingSlash: true,
-  distDir: 'out',
+  // Supprimer output: export pour le développement
+  // Garder uniquement pour le build de production
+  ...(process.env.NODE_ENV === 'production' ? {
+    output: 'export',
+    trailingSlash: true,
+    distDir: 'out',
+  } : {}),
   allowedDevOrigins: ["127.0.0.1"],
 };
 

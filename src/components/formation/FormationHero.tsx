@@ -71,7 +71,7 @@ export default function FormationHero() {
         {/* Image hero — placeholder tant que les vraies photos ne sont pas ajoutées */}
         <div className="relative mt-16 mx-auto max-w-4xl">
           <Image
-            src="https://iili.io/qFW0c8v.png"
+            src="https://iili.io/qKw6yru.png"
             alt="Presentation formation van business academy vanzon explorer"
             width={1200}
             height={800}

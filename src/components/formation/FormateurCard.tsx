@@ -25,42 +25,54 @@ export default function FormateurCard({
   imageUrl,
 }: FormateurCardProps) {
   return (
-    <div className="glass-card overflow-hidden">
-      {/* Photo */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-blue-100 to-sky-50">
+    <div className="group relative bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100">
+      {/* Photo avec overlay */}
+      <div className="relative h-48 overflow-hidden">
         {imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt={`Photo de ${name}`}
-            fill
-            className="object-cover"
-            priority
-          />
+          <>
+            <Image
+              src={imageUrl}
+              alt={`Photo de ${name}`}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          </>
         ) : (
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center h-full bg-gradient-to-br from-slate-50 to-slate-100">
             <div className="text-center">
-              <span className="text-5xl block">👤</span>
-              <p className="text-slate-400 text-xs mt-2">Photo {name} à ajouter</p>
+              <span className="text-3xl block text-slate-300">👤</span>
             </div>
           </div>
         )}
-      </div>
-
-      {/* Corps */}
-      <div className="p-6">
-        <div className="flex items-center gap-3 mb-3">
-          <h3 className="text-lg font-bold text-slate-900">{name}</h3>
-          <span className={`badge-glass text-xs ${badgeStyles[badgeColor]}`}>
+        
+        {/* Badge sur la photo */}
+        <div className="absolute top-3 right-3">
+          <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${badgeStyles[badgeColor]}`}>
             {badge}
           </span>
         </div>
-        <p className="text-sm text-slate-500 font-medium mb-3">{role}</p>
-        <p className="text-sm text-slate-600 leading-relaxed">{description}</p>
+      </div>
+
+      {/* Contenu */}
+      <div className="p-5">
+        <div className="mb-3">
+          <h3 className="text-lg font-semibold text-slate-900 mb-1">{name}</h3>
+          <p className="text-sm text-slate-500 font-medium">{role}</p>
+        </div>
+        
+        <p className="text-sm text-slate-600 leading-relaxed mb-4 line-clamp-3">
+          {description}
+        </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mt-4">
+        <div className="flex flex-wrap gap-1.5">
           {tags.map((tag) => (
-            <span key={tag} className="badge-glass text-xs">
+            <span 
+              key={tag} 
+              className="inline-block px-2 py-1 text-xs font-medium bg-slate-50 text-slate-600 rounded-md"
+            >
               {tag}
             </span>
           ))}

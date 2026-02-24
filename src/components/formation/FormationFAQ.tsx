@@ -48,7 +48,7 @@ const faqs: FAQItem[] = [
   {
     question: "Comment fonctionne l'appel de découverte ?",
     answer:
-      "C'est un appel gratuit de 30 minutes avec un membre de l'équipe. On comprend ton projet, on répond à tes questions, et si la formation est faite pour toi, on t'explique comment rejoindre la prochaine session.",
+      "C'est un appel gratuit de 30 minutes avec un membre de l'équipe. On comprend ton projet, on répond à tes questions, et si la formation  toi, on t'explique comment rejoindre la prochaine session.",
   },
 ];
 

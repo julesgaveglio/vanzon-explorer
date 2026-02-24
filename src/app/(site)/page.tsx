@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { sanityFetch } from "@/lib/sanity/client";
-import { getFeaturedVansQuery, getAllTestimonialsQuery, getHeroImageQuery } from "@/lib/sanity/queries";
+import { getFeaturedVansQuery, getAllTestimonialsQuery, getHeroImageQuery, getHeroCarouselQuery } from "@/lib/sanity/queries";
 import { imagePresets } from "@/lib/sanity/client";
 import type { VanCard as VanCardType, Testimonial } from "@/lib/sanity/types";
 import GlassCard from "@/components/ui/GlassCard";
@@ -9,6 +9,7 @@ import LiquidButton from "@/components/ui/LiquidButton";
 import VanCard from "@/components/van/VanCard";
 import VanSlider from "@/components/van/VanSlider";
 import TestimonialCarousel from "@/components/testimonials/TestimonialCarousel";
+import HeroCarousel from "@/components/ui/HeroCarousel";
 
 export const revalidate = 60;
 
@@ -71,30 +72,36 @@ const stats = [
 
 export default async function HomePage() {
   // Fetch Sanity data
-  const [featuredVans, testimonials, heroImage] = await Promise.all([
+  const [featuredVans, testimonials, heroImage, heroCarousel] = await Promise.all([
     sanityFetch<VanCardType[]>(getFeaturedVansQuery),
     sanityFetch<Testimonial[]>(getAllTestimonialsQuery),
     sanityFetch<{image?: string; alt?: string}>(getHeroImageQuery),
+    sanityFetch<{images?: any[]; isActive?: boolean}>(getHeroCarouselQuery),
   ]);
 
   return (
     <>
       {/* ━━━ SECTION 1 — Hero ━━━ */}
       <section className="relative overflow-hidden min-h-[80vh]">
-        {/* Image de fond avec overlay */}
-        {heroImage?.image ? (
-          <>
-            <div className="absolute inset-0">
-              <Image
-                src={imagePresets.hero(heroImage.image)}
-                alt={heroImage.alt || "Van sur la route avec vue montagne et océan"}
-                fill
-                className="object-cover"
-                priority
-                sizes="100vw"
-              />
-                          </div>
-          </>
+        {/* Image de fond avec carousel */}
+        {heroCarousel?.isActive && heroCarousel?.images && heroCarousel.images.length > 0 ? (
+          <HeroCarousel 
+            images={heroCarousel.images} 
+            interval={6000}
+          />
+        ) : heroImage?.image ? (
+          // Fallback image fixe si carousel désactivé
+          <div className="absolute inset-0">
+            <Image
+              src={imagePresets.hero(heroImage.image)}
+              alt={heroImage.alt || "Van sur la route avec vue montagne et océan"}
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-900/60" />
+          </div>
         ) : (
           // Fallback gradient si pas d'image
           <div
@@ -105,23 +112,25 @@ export default async function HomePage() {
           />
         )}
 
-        {/* Contenu */}
-        <div className="relative max-w-7xl mx-auto px-6 py-24 md:py-36">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.05] tracking-tight drop-shadow-lg">
-              Construisez votre{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-sky-300 bg-clip-text text-transparent">
-                liberté.
-              </span>
-            </h1>
-            <p className="text-xl text-white/90 mt-6 max-w-xl leading-relaxed drop-shadow-md">
-              Location · Achat · Formation — Explorez le Pays Basque en van aménagé, à votre rythme.
-            </p>
-            <div className="flex gap-4 mt-8 flex-wrap">
-              <LiquidButton href="/location">Louer un van</LiquidButton>
-              <LiquidButton variant="ghost" href="/achat">
-                Acheter un van
-              </LiquidButton>
+        {/* Contenu fixe au-dessus du carousel */}
+        <div className="absolute inset-0 z-20 flex items-center">
+          <div className="max-w-7xl mx-auto px-6 w-full">
+            <div className="max-w-3xl">
+              <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.05] tracking-tight drop-shadow-lg">
+                Construisez votre{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-sky-300 bg-clip-text text-transparent">
+                  liberté.
+                </span>
+              </h1>
+              <p className="text-xl text-white/90 mt-6 max-w-xl leading-relaxed drop-shadow-md">
+                Location · Achat · Formation — Explorez le Pays Basque en van aménagé, à votre rythme.
+              </p>
+              <div className="flex gap-4 mt-8 flex-wrap">
+                <LiquidButton href="/location">Louer un van</LiquidButton>
+                <LiquidButton variant="ghost" href="/achat">
+                  Acheter un van
+                </LiquidButton>
+              </div>
             </div>
           </div>
         </div>
