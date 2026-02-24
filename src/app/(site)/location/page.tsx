@@ -3,7 +3,6 @@ import { sanityFetch } from "@/lib/sanity/client";
 import { getAllLocationVansQuery } from "@/lib/sanity/queries";
 import type { VanCard as VanCardType } from "@/lib/sanity/types";
 import VanCard from "@/components/van/VanCard";
-import VanLocationCard from "@/components/van/VanLocationCard";
 import VanSlider from "@/components/van/VanSlider";
 
 export const revalidate = 60;
@@ -22,32 +21,6 @@ const vanFeatures = [
   { icon: "https://iili.io/KGvOFV9.png", label: "Toilette sèche" },
 ];
 
-const yoni = {
-  name: "Yoni",
-  model: "Renault Trafic III",
-  images: [
-    "https://iili.io/KGeBURn.png",
-    "https://iili.io/KGOKoq7.png",
-    "https://iili.io/KGOKCsS.png",
-  ],
-  features: vanFeatures,
-  price: "à partir de 65 € / nuit",
-  bookingUrl: "https://www.yescapa.fr/campers/89215",
-  available: true,
-};
-
-const xalbat = {
-  name: "Xalbat",
-  model: "Renault Trafic III",
-  images: [
-    "https://iili.io/KGeBrDG.png",
-    "https://iili.io/KGOKqzl.png",
-    "https://iili.io/KGOKBX2.png",
-  ],
-  features: vanFeatures,
-  price: "à partir de 65 € / nuit",
-  available: false,
-};
 
 export default async function LocationPage() {
   const vans = await sanityFetch<VanCardType[]>(getAllLocationVansQuery);

@@ -7,7 +7,6 @@ import type { VanCard as VanCardType, Testimonial } from "@/lib/sanity/types";
 import GlassCard from "@/components/ui/GlassCard";
 import LiquidButton from "@/components/ui/LiquidButton";
 import VanCard from "@/components/van/VanCard";
-import VanLocationCard from "@/components/van/VanLocationCard";
 import VanSlider from "@/components/van/VanSlider";
 import TestimonialCarousel from "@/components/testimonials/TestimonialCarousel";
 
@@ -62,32 +61,6 @@ const vanFeatures = [
   { icon: "https://iili.io/KGvOFV9.png", label: "Toilette sèche" },
 ];
 
-const yoni = {
-  name: "Yoni",
-  model: "Renault Trafic III",
-  images: [
-    "https://iili.io/KGeBURn.png",
-    "https://iili.io/KGOKoq7.png",
-    "https://iili.io/KGOKCsS.png",
-  ],
-  features: vanFeatures,
-  price: "à partir de 65 € / nuit",
-  bookingUrl: "https://www.yescapa.fr/campers/89215",
-  available: true,
-};
-
-const xalbat = {
-  name: "Xalbat",
-  model: "Renault Trafic III",
-  images: [
-    "https://iili.io/KGeBrDG.png",
-    "https://iili.io/KGOKqzl.png",
-    "https://iili.io/KGOKBX2.png",
-  ],
-  features: vanFeatures,
-  price: "à partir de 65 € / nuit",
-  available: false,
-};
 
 const stats = [
   { value: "12+", label: "Vans disponibles" },
@@ -101,7 +74,7 @@ export default async function HomePage() {
   const [featuredVans, testimonials, heroImage] = await Promise.all([
     sanityFetch<VanCardType[]>(getFeaturedVansQuery),
     sanityFetch<Testimonial[]>(getAllTestimonialsQuery),
-    sanityFetch<any>(getHeroImageQuery),
+    sanityFetch<{image?: string; alt?: string}>(getHeroImageQuery),
   ]);
 
   return (
@@ -114,7 +87,7 @@ export default async function HomePage() {
             <div className="absolute inset-0">
               <Image
                 src={imagePresets.hero(heroImage.image)}
-                alt={heroImage.image.alt || "Van sur la route avec vue montagne et océan"}
+                alt={heroImage.alt || "Van sur la route avec vue montagne et océan"}
                 fill
                 className="object-cover"
                 priority

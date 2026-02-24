@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export default function VanSlider() {
-  const sliderRef = useRef<HTMLDivElement>(null);
-
+  
   useEffect(() => {
     // Gestion des slideshows
     const slideshowContainers = document.querySelectorAll('.slideshow-container');
@@ -300,7 +299,7 @@ export default function VanSlider() {
               </ul>
               <div className="van-footer">
                 <div className="van-price">à partir de 65 € / nuit</div>
-                <a href="https://www.yescapa.fr/campers/89215" target="_blank" rel="noopener noreferrer" className="van-btn">Plus d'informations</a>
+                <a href="https://www.yescapa.fr/campers/89215" target="_blank" rel="noopener noreferrer" className="van-btn">Plus d&apos;informations</a>
               </div>
             </div>
           </div>
@@ -324,7 +323,7 @@ export default function VanSlider() {
               </ul>
               <div className="van-footer">
                 <div className="van-price">à partir de 65 € / nuit</div>
-                <a href="https://www.yescapa.fr/campers/98869" target="_blank" rel="noopener noreferrer" className="van-btn">Plus d'informations</a>
+                <a href="https://www.yescapa.fr/campers/98869" target="_blank" rel="noopener noreferrer" className="van-btn">Plus d&apos;informations</a>
               </div>
             </div>
           </div>
