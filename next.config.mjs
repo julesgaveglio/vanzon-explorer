@@ -16,7 +16,11 @@ const nextConfig = {
         hostname: "freeimage.host",
       },
     ],
+    unoptimized: true,
   },
+  output: 'export',
+  trailingSlash: true,
+  distDir: 'out',
   allowedDevOrigins: ["127.0.0.1"],
 };
 

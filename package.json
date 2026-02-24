@@ -14,7 +14,8 @@
     "import-all-reviews": "npx ts-node scripts/import-all-google-reviews.ts",
     "publish-all-reviews": "npx ts-node scripts/publish-all-reviews.ts",
     "sync-reviews": "npx ts-node scripts/sync-google-reviews.ts",
-    "import-manual-reviews": "npx ts-node scripts/google-reviews-data.ts"
+    "import-manual-reviews": "npx ts-node scripts/google-reviews-data.ts",
+    "export": "next build && next export"
   },
   "dependencies": {
     "@builder.io/react": "^9.1.2",
