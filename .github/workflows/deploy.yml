@@ -28,9 +28,7 @@ jobs:
         NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
         NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
 
-    - name: Export static files
-      run: npm run export
-
+    
     - name: Setup Pages
       uses: actions/configure-pages@v4
 
